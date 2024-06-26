@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monopoly Torris</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .deck-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .deck {
+            width: 150px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .deck:hover {
+            transform: scale(1.05);
+        }
+
+        .green {
+            background-color: #28a745;
+        }
+
+        .red {
+            background-color: #dc3545;
+        }
+
+        .card-display {
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Monopoly Torris</h1>
+        <div class="deck-container">
+            <div class="deck green" id="goodLuckDeck">
+                <h2>Torris Buena Suerte</h2>
+            </div>
+            <div class="deck red" id="badLuckDeck">
+                <h2>Torris Mala Suerte</h2>
+            </div>
+        </div>
+        <div id="cardDisplay" class="card-display">
+            <p>Presiona una baraja para sacar una carta</p>
+        </div>
+    </div>
+    <script>
+        document.getElementById('goodLuckDeck').addEventListener('click', drawGoodLuck);
+        document.getElementById('badLuckDeck').addEventListener('click', drawBadLuck);
+
+        const goodLuckCards = [
+            "Has ganado 100 monedas",
+            "Avanza tres espacios",
+            "Recibe un turno extra",
+            "Encuentras un tesoro, gana 200 monedas",
+            "Avanza al próximo destino y recoge una recompensa"
+        ];
+
+        const badLuckCards = [
+            "Pierdes 50 monedas",
+            "Retrocede dos espacios",
+            "Pierdes un turno",
+            "Paga 100 monedas de impuesto",
+            "Te roban 30 monedas"
+        ];
+
+        function drawGoodLuck() {
+            const randomIndex = Math.floor(Math.random() * goodLuckCards.length);
+            const card = goodLuckCards[randomIndex];
+            displayCard(card);
+        }
+
+        function drawBadLuck() {
+            const randomIndex = Math.floor(Math.random() * badLuckCards.length);
+            const card = badLuckCards[randomIndex];
+            displayCard(card);
+        }
+
+        function displayCard(card) {
+            const cardDisplay = document.getElementById('cardDisplay');
+            cardDisplay.innerHTML = `<p>${card}</p>`;
+        }
+    </script>
+</body>
+</html>
